@@ -7,10 +7,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-    <link rel="stylesheet" href="sgn.css">
+    <link rel="stylesheet" href="SignUp.css">
 </head>
 <body>
 <main class="my-form">
@@ -37,22 +36,20 @@
 
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label text-md-right">Gender</label>
-
                                     <label class="form-check col-md-4 col-form-label text-md">
-                                        <input class="form-check-input " type="radio" name="gender" value="option1">
+                                        <input class="form-check-input " type="radio" name="_gender" value="option1">
                                         <span class="form-check-label"> Male </span>
                                     </label>
                                     <label class="form-check col-md-4 col-form-label text-md">
-                                        <input class="form-check-input " type="radio" name="gender" value="option2">
+                                        <input class="form-check-input " type="radio" name="_gender" value="option2">
                                         <span class="form-check-label"> Female</span>
                                     </label>
-
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label text-md-right">Country</label>
                                 <div class="col-md-6">
-                                    <select class="dropdown form-control" name="Select1" size="1">
+                                    <select class="dropdown form-control" name="_Select1" size="1">
                                         <option value="">- Please select a country -</option>
 
                                         <option value="Afghanistan">Afghanistan</option>
@@ -327,23 +324,23 @@
                             <div class="form-group row">
                                 <label  class="col-md-4 col-form-label text-md-right">Password</label>
                                 <div class="col-md-6">
-                                    <input type="password"  class="form-control" name="_password">
+                                    <input type="password"  class="form-control" name="_password" id="password">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label  class="col-md-4 col-form-label text-md-right">Confirm Password</label>
                                 <div class="col-md-6">
-                                    <input type="password"  class="form-control" name="_cpassword">
+                                    <input type="password"  class="form-control" name="_cpassword" id="cpassword">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label text-md-right">Select A Game</label>
                                 <div class="col-md-6">
-                                    Farcry<input type="checkbox" id="games1"  name="game1">
-                                    Assassin's Creed<input type="checkbox" id="games2"  name="game2">
-                                    Need For Speed<input type="checkbox" id="games3" name="game3">
+                                    Far Cry<input type="checkbox" id="games1" class="checkboxsel" name="games[]" value="1">
+                                    Assassin's Creed<input type="checkbox" id="games2" class="checkboxsel"  name="games[]" value="2">
+                                    Need For Speed<input type="checkbox" id="games3" class="checkboxsel" name="games[]" value="3">
                                 </div>
                             </div>
 
@@ -375,6 +372,12 @@
                      required:true,
                      minlength:4
                  },
+                 _gender:{
+                   required:true,
+                 },
+                 _Select1:{
+                   required:true
+                 },
                  _email: {
                      required: true,
                      email: true
@@ -389,11 +392,14 @@
                  _cpassword:{
                      required:true,
                      minlength:8,
-                     equalTo:"_password"
+                     equalTo:"#password"
 
+                 },
+                 "games[]":{
+                   required:true
                  }
              },
-             messages: {
+             messages:{
                  _firstname: {
                      required:"Please specify your name",
                      minlength: jQuery.validator.format("At least {0} characters required!")
@@ -401,6 +407,12 @@
                  _lastname: {
                      required:"Please specify your last name",
                      minlength: jQuery.validator.format("At least {0} characters required!")
+                 },
+                 _gender:{
+                   required:"Please specify your gender"
+                 },
+                 _Select1:{
+                     required:"Please specify your country"
                  },
                  _email: {
                      required: "Please specify your email",
@@ -417,8 +429,15 @@
                      required:"Must be enter a password",
                      minlength:"Atleast 8 characters",
                      equalTo:"Enter same password"
+                 },
+                 "games[]":{
+                     required:"Select your favorite game"
                  }
-             }
+             },
+
+         });
+         $('.checkboxsel').click(function() {
+             $(this).siblings('input:checkbox').prop('checked', false);
          });
      });
 </script>

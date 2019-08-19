@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style type="text/css">
+        label { display:block;}
+        .valid { border: 1px solid green;}
+        .error { border: 1px solid red;}
+        .validarium-error { color: red; font-weight: bold;}
+    </style>
+    <script src="../lib/jquery-1.8.3.js"></script>
+    <script src="../src/jquery.validarium.js"></script>
+
+</head>
+<body>
+<form id="myform" action="">
+
+    <div class="form-group row">
+        <label  class="col-md-4 col-form-label text-md-right">First Name</label>
+        <div class="col-md-6">
+            <input type="text" data-rules-required="true" data-rules-required-message="My message here" data-rules-minlength="5" data-rules-maxlength="10" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label  class="col-md-4 col-form-label text-md-right">Last Name</label>
+        <div class="col-md-6">
+            <input type="text"  data-rules-required="true" data-rules-required-message="My message here" data-rules-minlength="5" data-rules-maxlength="10">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label  class="col-md-4 col-form-label text-md-right">Password</label>
+        <div class="col-md-6">
+            <input type="password" id="pw1" data-rules-equalto="#pw2">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label  class="col-md-4 col-form-label text-md-right">Confirm Password</label>
+        <div class="col-md-6">
+            <input type="password"  id="pw2" data-rules-equalto="#pw1">
+        </div>
+    </div>
+
+</form>
+
+<script type="text/javascript">
+    $('form#myfrom').validarium();
+</script>
+</body>
+</html>
